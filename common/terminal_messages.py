@@ -1,21 +1,21 @@
 import os
 
 #Styles & Colours
-__REGULAR = '\033[2m'
-__BOLD = '\033[1m'
-__RED = '\033[91m'
-__YELLOW = '\033[93m'
-__BLUE = '\033[36m'
-__DEFAULT = '\033[0m'
+REGULAR = '\033[2m'
+BOLD = '\033[1m'
+RED = '\033[91m'
+YELLOW = '\033[93m'
+BLUE = '\033[36m'
+DEFAULT = '\033[0m'
 
 #Messages
-__INPUT_MSG = __BOLD + __BLUE + 'InstaScrapper > ' + __DEFAULT
-__UNKNOWN_CMD = __RED + 'Unknown command. Type ' + __BOLD + 'help' + __REGULAR + '.'
+INPUT_MSG = BOLD + BLUE + 'InstaScrapper > ' + DEFAULT
+UNKNOWN_CMD = RED + 'Unknown command. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 
 #Methods
 def print_banner():
     os.system('cls||clear')
-    print(__DEFAULT)
+    print(DEFAULT)
     print(r'      ____           __            _____                                        ')    
     print(r'     /  _/___  _____/ /_____ _    / ___/______________ _____  ____  ___  _____  ')
     print(r'     / // __ \/ ___/ __/ __ `/    \__ \/ ___/ ___/ __ `/ __ \/ __ \/ _ \/ ___/  ')
