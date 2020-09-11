@@ -1,7 +1,9 @@
 import common.terminal_messages as Msgs
+from bot import Driver as Driver
 import readline
 
 Msgs.print_banner()
+driver = Driver(False)
 while True:
     try:
         cmd, *arg = str.split(input(Msgs.INPUT_MSG).lower())
@@ -17,3 +19,5 @@ while True:
         break
     else:
         print(Msgs.UNKNOWN_CMD)
+
+del driver
