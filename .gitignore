@@ -2,3 +2,7 @@ common/__pycache__/__init__.cpython-38.pyc
 common/__pycache__/terminal_messages.cpython-38.pyc
 __pycache__/bot.cpython-38.pyc
 geckodriver.log
+common/__pycache__/loggedin_user_data.cpython-38.pyc
+loggedin_user/__pycache__/methods.cpython-38.pyc
+loggedin_user/__pycache__/data.cpython-38.pyc
+loggedin_user/__pycache__/__init__.cpython-38.pyc

@@ -3,7 +3,7 @@ from bot import Driver as Driver
 import readline
 
 Msgs.print_banner()
-driver = Driver(True)
+driver = Driver(False)
 while True:
     try:
         cmd, *args = str.split(input(Msgs.INPUT_MSG))
@@ -14,10 +14,12 @@ while True:
 
     if cmd == '':
         pass
-    elif cmd == 'auth' or cmd == 'login':
+    elif cmd == 'login' or cmd == 'auth':
         driver.auth(args)
-    elif cmd == 'deauth' or cmd == 'logout':
+    elif cmd == 'logout' or cmd == 'deauth':
         driver.deauth(args)
+    elif cmd == 'get':
+        pass
     elif cmd == 'clear' or cmd == 'cls':
         Msgs.print_banner()
     elif cmd == 'quit' or cmd == 'exit' or cmd == 'close':

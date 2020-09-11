@@ -14,6 +14,7 @@ UNKNOWN_CMD = RED + 'Unknown command. Type ' + BOLD + 'help' + REGULAR + '.' + D
 UNKNOWN_ERROR = RED + 'Unknown error. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 INVALID_ARGS = RED + 'Invalid arguments for given command. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 INVALID_CARDENTIALS = RED + 'Invalid cardentials. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
+LOGIN_REQUIRED = RED + 'The user must be authenticated. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 
 #Methods
 def print_banner():
