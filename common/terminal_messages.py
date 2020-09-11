@@ -3,8 +3,8 @@ import os
 #Styles & Colours
 REGULAR = '\033[2m'
 BOLD = '\033[1m'
-RED = '\033[91m'
-YELLOW = '\033[93m'
+RED = '\033[91m' + '[ERROR] '
+YELLOW = '\033[93m' + '[INFO] '
 BLUE = '\033[36m'
 DEFAULT = '\033[0m'
 
