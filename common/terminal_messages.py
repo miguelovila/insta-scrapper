@@ -11,7 +11,9 @@ DEFAULT = '\033[0m'
 #Messages
 INPUT_MSG = BOLD + BLUE + 'InstaScrapper > ' + DEFAULT
 UNKNOWN_CMD = RED + 'Unknown command. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
+UNKNOWN_ERROR = RED + 'Unknown error. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 INVALID_ARGS = RED + 'Invalid arguments for given command. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
+INVALID_CARDENTIALS = RED + 'Invalid cardentials. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 
 #Methods
 def print_banner():

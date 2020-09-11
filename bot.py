@@ -8,28 +8,39 @@ import common.terminal_messages as Msgs
 class Driver:
 
     def __init__(self, headless):
-        __options = Options()
-        __options.headless = headless
-        __options.set_preference('devtools.jsonview.enabled', False)
-        self.__driver = webdriver.Firefox(firefox_options=__options, executable_path='./driver/geckodriver')
+        try:
+            __options = Options()
+            __options.headless = headless
+            __options.set_preference('devtools.jsonview.enabled', False)
+            self.__driver = webdriver.Firefox(firefox_options=__options, executable_path='./driver/geckodriver')
+        except:
+            print(Msgs.UNKNOWN_ERROR)
 
     def __del__(self):
-        self.__driver.quit()
+        try:
+            self.__driver.quit()
+        except:
+            print(Msgs.UNKNOWN_ERROR)
 
     def auth(self, args=[]):
-        if (len(args) < 2) or (len(args) > 2):
-            print(Msgs.INVALID_ARGS)
-            return 
+        try:
+            if (len(args) < 2) or (len(args) > 2):
+                print(Msgs.INVALID_ARGS)
+                return 
 
-        self.deauth()
-        WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'username'))).send_keys(args[0])
-        WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'password'))).send_keys(args[1])
-        WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.L3NKy'))).click()
+            self.deauth()
+            WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'username'))).send_keys(args[0])
+            WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'password'))).send_keys(args[1])
+            WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.L3NKy'))).click()
+        except:
+            print(Msgs.UNKNOWN_ERROR)
 
     def deauth(self, args=[]):
-        if (len(args) > 0):
-            print(Msgs.INVALID_ARGS)
-            return 
-
-        self.__driver.get('https://instagram.com/accounts/logout')
-        WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'username')))
+        try:
+            if (len(args) > 0):
+                print(Msgs.INVALID_ARGS)
+                return 
+            self.__driver.get('https://instagram.com/accounts/logout')
+            WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'username')))
+        except:
+            print(Msgs.UNKNOWN_ERROR)

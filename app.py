@@ -3,7 +3,7 @@ from bot import Driver as Driver
 import readline
 
 Msgs.print_banner()
-driver = Driver(False)
+driver = Driver(True)
 while True:
     try:
         cmd, *args = str.split(input(Msgs.INPUT_MSG))
