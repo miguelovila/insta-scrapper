@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import common.terminal_messages as Msgs
 import loggedin_user.methods as LoggedUserMethods
+import loggedin_user.data as LoggedUserData
 import json
 
 class Driver:
@@ -45,5 +46,36 @@ class Driver:
             self.__driver.get('https://www.instagram.com/accounts/edit/?__a=1')        
             self.__driver.get('https://www.instagram.com/' + json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)['form_data']['username'] + '/?__a=1')
             LoggedUserMethods.set_logged_user_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        except Exception as e:
+            Msgs.print_error(e)
+
+    def set_logged_user_followers(self, limit = '0'):
+        if (LoggedUserData.username == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        LoggedUserData.followers_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables={"id":"' + LoggedUserData.id + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['user']['edge_followed_by']['edges'])):
+                    follower = (response['data']['user']['edge_followed_by']['edges'][i]['node']['full_name'],response['data']['user']['edge_followed_by']['edges'][i]['node']['username'],response['data']['user']['edge_followed_by']['edges'][i]['node']['id'])
+                    LoggedUserData.followers_list.append(follower)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['user']['edge_followed_by']['page_info']['has_next_page']
+                end_cursor = str(response['data']['user']['edge_followed_by']['page_info']['end_cursor'])
+            LoggedUserMethods.get_logged_user_followers_list()
         except Exception as e:
             Msgs.print_error(e)

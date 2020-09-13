@@ -12,3 +12,4 @@ is_verified = ''
 profile_pic_url = ''
 username = ''
 uploads = ''
+followers_list = []

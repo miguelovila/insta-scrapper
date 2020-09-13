@@ -27,13 +27,13 @@ while True:
                 continue
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
-                    LoggedUserMethods.get_logged_user_data()
+                    LoggedUserMethods.get_logged_user_basic_data()
                     continue
                 if (args[1] == 'following-list'):
                     #LoggedUserMethods.get_logged_user_following()
                     continue
                 if (args[1] == 'followers-list'):
-                    #LoggedUserMethods.get_logged_user_followers()
+                    driver.set_logged_user_followers()
                     continue
                 if (args[1] == 'posts-list'):
                     #LoggedUserMethods.get_logged_user_posts()
@@ -45,7 +45,7 @@ while True:
                     #LoggedUserMethods.get_logged_user_following(args[2])
                     continue
                 if (args[1] == 'followers-list'):
-                    #LoggedUserMethods.get_logged_user_followers(args[2])
+                    driver.set_logged_user_followers(args[2])
                     continue
                 if (args[1] == 'posts-list'):
                     #LoggedUserMethods.get_logged_user_posts(args[2])

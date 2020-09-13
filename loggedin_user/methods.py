@@ -2,7 +2,7 @@ import common.terminal_messages as Msgs
 import loggedin_user.data as LoggedUserData
 import json
 
-def get_logged_user_data():
+def get_logged_user_basic_data():
     if LoggedUserData.username == '':
         print(Msgs.LOGIN_REQUIRED)
         return
@@ -21,11 +21,24 @@ def get_logged_user_data():
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',LoggedUserData.username) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Posts: ',LoggedUserData.uploads) + Msgs.DEFAULT)
 
+def get_logged_user_followers_list():
+    first = True
+    for follower in LoggedUserData.followers_list:
+        if not(first):
+            print (Msgs.YELLOW + "[INFO]" + Msgs.DEFAULT)
+        else:
+            first = False
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Full Name: ',follower[0]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',follower[1]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',follower[2]) + Msgs.DEFAULT)
+
 def get_logged_user():
     if LoggedUserData.username == '':
         print(Msgs.LOGIN_REQUIRED)
         return
-    Msgs.print_info('Logged in as @' + LoggedUserData.username + ' .')
+    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Full Name: ',LoggedUserData.full_name) + Msgs.DEFAULT)
+    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',LoggedUserData.username) + Msgs.DEFAULT)
+    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',LoggedUserData.id) + Msgs.DEFAULT)
 
 def set_logged_user_data(response):
     response = json.loads(response)
@@ -59,3 +72,4 @@ def del_logged_user_data():
     LoggedUserData.profile_pic_url = ''
     LoggedUserData.username = ''
     LoggedUserData.uploads = ''
+    LoggedUserData.followers_list.clear()
