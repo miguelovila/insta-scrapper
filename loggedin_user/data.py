@@ -13,3 +13,4 @@ profile_pic_url = ''
 username = ''
 uploads = ''
 followers_list = []
+following_list = []

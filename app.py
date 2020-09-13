@@ -30,7 +30,7 @@ while True:
                     LoggedUserMethods.get_logged_user_basic_data()
                     continue
                 if (args[1] == 'following-list'):
-                    #LoggedUserMethods.get_logged_user_following()
+                    driver.set_logged_user_following()
                     continue
                 if (args[1] == 'followers-list'):
                     driver.set_logged_user_followers()
@@ -42,7 +42,7 @@ while True:
                 continue
             if (len(args) == 3):
                 if (args[1] == 'following-list'):
-                    #LoggedUserMethods.get_logged_user_following(args[2])
+                    driver.set_logged_user_following(args[2])
                     continue
                 if (args[1] == 'followers-list'):
                     driver.set_logged_user_followers(args[2])

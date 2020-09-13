@@ -79,3 +79,34 @@ class Driver:
             LoggedUserMethods.get_logged_user_followers_list()
         except Exception as e:
             Msgs.print_error(e)
+
+    def set_logged_user_following(self, limit = '0'):
+        if (LoggedUserData.username == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        LoggedUserData.following_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=d04b0a864b4b54837c0d870b0e77e076&variables={"id":"' + LoggedUserData.id + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['user']['edge_follow']['edges'])):
+                    followee = (response['data']['user']['edge_follow']['edges'][i]['node']['full_name'],response['data']['user']['edge_follow']['edges'][i]['node']['username'],response['data']['user']['edge_follow']['edges'][i]['node']['id'])
+                    LoggedUserData.following_list.append(followee)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['user']['edge_follow']['page_info']['has_next_page']
+                end_cursor = str(response['data']['user']['edge_follow']['page_info']['end_cursor'])
+            LoggedUserMethods.get_logged_user_following_list()
+        except Exception as e:
+            Msgs.print_error(e)
