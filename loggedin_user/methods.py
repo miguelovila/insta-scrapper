@@ -43,6 +43,17 @@ def get_logged_user_following_list():
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',followee[1]) + Msgs.DEFAULT)
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',followee[2]) + Msgs.DEFAULT)
 
+def get_logged_user_posts_list():
+    first = True
+    for post in LoggedUserData.posts_list:
+        if not(first):
+            print (Msgs.YELLOW + "[INFO]" + Msgs.DEFAULT)
+        else:
+            first = False
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Type Name: ',post[0]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Post ID: ',post[1]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Short Code: ',post[2]) + Msgs.DEFAULT)
+
 def get_logged_user():
     if LoggedUserData.username == '':
         print(Msgs.LOGIN_REQUIRED)
@@ -85,3 +96,4 @@ def del_logged_user_data():
     LoggedUserData.uploads = ''
     LoggedUserData.followers_list.clear()
     LoggedUserData.following_list.clear()
+    LoggedUserData.posts_list.clear()

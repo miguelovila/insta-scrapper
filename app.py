@@ -36,7 +36,7 @@ while True:
                     driver.set_logged_user_followers()
                     continue
                 if (args[1] == 'posts-list'):
-                    #LoggedUserMethods.get_logged_user_posts()
+                    driver.set_logged_user_posts()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
@@ -48,7 +48,7 @@ while True:
                     driver.set_logged_user_followers(args[2])
                     continue
                 if (args[1] == 'posts-list'):
-                    #LoggedUserMethods.get_logged_user_posts(args[2])
+                    driver.set_logged_user_posts(args[2])
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue

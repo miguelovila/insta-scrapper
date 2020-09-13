@@ -14,3 +14,4 @@ username = ''
 uploads = ''
 followers_list = []
 following_list = []
+posts_list = []
