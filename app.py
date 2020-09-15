@@ -22,33 +22,33 @@ while True:
             continue
         
         if (args[0] == 'logged-user'):
-            if (len(args) == 1):
-                LoggedUserMethods.get_logged_user()
-                continue
+            #if (len(args) == 1):
+            #    LoggedUserMethods.get_logged_user()
+            #    continue
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
-                    LoggedUserMethods.get_logged_user_basic_data()
+                    driver.get_logged_user_basic_data()
                     continue
                 if (args[1] == 'following-list'):
-                    driver.set_logged_user_following()
+                    driver.get_logged_user_following()
                     continue
                 if (args[1] == 'followers-list'):
-                    driver.set_logged_user_followers()
+                    driver.get_logged_user_followers()
                     continue
                 if (args[1] == 'posts-list'):
-                    driver.set_logged_user_posts()
+                    driver.get_logged_user_posts()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
                 if (args[1] == 'following-list'):
-                    driver.set_logged_user_following(args[2])
+                    driver.get_logged_user_following(args[2])
                     continue
                 if (args[1] == 'followers-list'):
-                    driver.set_logged_user_followers(args[2])
+                    driver.get_logged_user_followers(args[2])
                     continue
                 if (args[1] == 'posts-list'):
-                    driver.set_logged_user_posts(args[2])
+                    driver.get_logged_user_posts(args[2])
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue

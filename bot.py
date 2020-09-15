@@ -7,6 +7,7 @@ import common.terminal_messages as Msgs
 import loggedin_user.methods as LoggedUserMethods
 import loggedin_user.data as LoggedUserData
 import json
+import re
 
 class Driver:
 
@@ -26,8 +27,13 @@ class Driver:
             WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'password'))).send_keys(args[1])       
             try:
                 WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.L3NKy'))).click()
-                WebDriverWait(self.__driver, 5).until_not(expected_conditions.presence_of_element_located((By.NAME, 'username')))
-                self.set_logged_user_basic_data()
+                WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.XTCLo')))      
+                id = re.search('viewerId":"(.*)"},"country_code":"', self.__driver.page_source)
+                LoggedUserData.id = id.group(1)
+                username = re.search('"username":"(.*)","badge_count":"', self.__driver.page_source)
+                LoggedUserData.username = username.group(1)
+                fullname = re.search('"full_name":"(.*)","has_phone_number"', self.__driver.page_source)
+                LoggedUserData.full_name = fullname.group(1)
             except:
                 print(Msgs.INVALID_CARDENTIALS)          
         except Exception as e:
@@ -41,15 +47,17 @@ class Driver:
         except Exception as e:
             Msgs.print_error(e)
 
-    def set_logged_user_basic_data(self):
-        try:
-            self.__driver.get('https://www.instagram.com/accounts/edit/?__a=1')        
-            self.__driver.get('https://www.instagram.com/' + json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)['form_data']['username'] + '/?__a=1')
+    def get_logged_user_basic_data(self):
+        if (LoggedUserData.id == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        try:       
+            self.__driver.get('https://www.instagram.com/' + LoggedUserData.username + '/?__a=1')
             LoggedUserMethods.set_logged_user_basic_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
         except Exception as e:
             Msgs.print_error(e)
 
-    def set_logged_user_followers(self, limit = '0'):
+    def get_logged_user_followers(self, limit = '0'):
         if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
@@ -76,11 +84,10 @@ class Driver:
                             break            
                 next_page = response['data']['user']['edge_followed_by']['page_info']['has_next_page']
                 end_cursor = str(response['data']['user']['edge_followed_by']['page_info']['end_cursor'])
-            LoggedUserMethods.get_logged_user_followers_list()
         except Exception as e:
             Msgs.print_error(e)
 
-    def set_logged_user_following(self, limit = '0'):
+    def get_logged_user_following(self, limit = '0'):
         if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
@@ -107,11 +114,10 @@ class Driver:
                             break            
                 next_page = response['data']['user']['edge_follow']['page_info']['has_next_page']
                 end_cursor = str(response['data']['user']['edge_follow']['page_info']['end_cursor'])
-            LoggedUserMethods.get_logged_user_following_list()
         except Exception as e:
             Msgs.print_error(e)
 
-    def set_logged_user_posts(self, limit = '0'):
+    def get_logged_user_posts(self, limit = '0'):
         if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
@@ -138,6 +144,5 @@ class Driver:
                             break            
                 next_page = response['data']['user']['edge_owner_to_timeline_media']['page_info']['has_next_page']
                 end_cursor = str(response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor'])
-            LoggedUserMethods.get_logged_user_posts_list()
         except Exception as e:
             Msgs.print_error(e)
