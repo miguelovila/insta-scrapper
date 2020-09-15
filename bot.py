@@ -27,7 +27,7 @@ class Driver:
             try:
                 WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.L3NKy'))).click()
                 WebDriverWait(self.__driver, 5).until_not(expected_conditions.presence_of_element_located((By.NAME, 'username')))
-                self.__set_logged_user_data()
+                self.set_logged_user_basic_data()
             except:
                 print(Msgs.INVALID_CARDENTIALS)          
         except Exception as e:
@@ -41,16 +41,16 @@ class Driver:
         except Exception as e:
             Msgs.print_error(e)
 
-    def __set_logged_user_data(self):
+    def set_logged_user_basic_data(self):
         try:
             self.__driver.get('https://www.instagram.com/accounts/edit/?__a=1')        
             self.__driver.get('https://www.instagram.com/' + json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)['form_data']['username'] + '/?__a=1')
-            LoggedUserMethods.set_logged_user_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+            LoggedUserMethods.set_logged_user_basic_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
         except Exception as e:
             Msgs.print_error(e)
 
     def set_logged_user_followers(self, limit = '0'):
-        if (LoggedUserData.username == ''):
+        if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
         if not(limit.isnumeric()):
@@ -81,7 +81,7 @@ class Driver:
             Msgs.print_error(e)
 
     def set_logged_user_following(self, limit = '0'):
-        if (LoggedUserData.username == ''):
+        if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
         if not(limit.isnumeric()):
@@ -112,7 +112,7 @@ class Driver:
             Msgs.print_error(e)
 
     def set_logged_user_posts(self, limit = '0'):
-        if (LoggedUserData.username == ''):
+        if (LoggedUserData.id == ''):
             print(Msgs.LOGIN_REQUIRED)
             return
         if not(limit.isnumeric()):

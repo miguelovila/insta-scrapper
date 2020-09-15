@@ -3,7 +3,7 @@ import loggedin_user.data as LoggedUserData
 import json
 
 def get_logged_user_basic_data():
-    if LoggedUserData.username == '':
+    if LoggedUserData.id == '':
         print(Msgs.LOGIN_REQUIRED)
         return
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',LoggedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT) 
@@ -55,14 +55,14 @@ def get_logged_user_posts_list():
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Short Code: ',post[2]) + Msgs.DEFAULT)
 
 def get_logged_user():
-    if LoggedUserData.username == '':
+    if LoggedUserData.id == '':
         print(Msgs.LOGIN_REQUIRED)
         return
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Full Name: ',LoggedUserData.full_name) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',LoggedUserData.username) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',LoggedUserData.id) + Msgs.DEFAULT)
 
-def set_logged_user_data(response):
+def set_logged_user_basic_data(response):
     response = json.loads(response)
     LoggedUserData.biography = str(response['graphql']['user']['biography'])
     LoggedUserData.business_email = str(response['graphql']['user']['business_email'])
