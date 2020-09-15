@@ -22,9 +22,6 @@ while True:
             continue
         
         if (args[0] == 'logged-user'):
-            #if (len(args) == 1):
-            #    LoggedUserMethods.get_logged_user()
-            #    continue
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
                     driver.get_logged_user_basic_data()
@@ -62,7 +59,41 @@ while True:
         print(Msgs.INVALID_ARGS)
         continue
 
+    if (cmd == 'show'):
+        args = [x.lower() for x in args]
 
+        if (len(args) < 1) or (len(args)>2):
+            print(Msgs.INVALID_ARGS)
+            continue
+        
+        if (args[0] == 'logged-user'):
+            if (len(args) == 1):
+                LoggedUserMethods.show_logged_user()
+                continue
+            if (len(args) == 2):
+                if (args[1] == 'basic-data'):
+                    LoggedUserMethods.show_logged_user_basic_data()
+                    continue
+                if (args[1] == 'following-list'):
+                    LoggedUserMethods.show_logged_user_following_list()
+                    continue
+                if (args[1] == 'followers-list'):
+                    LoggedUserMethods.show_logged_user_followers_list()
+                    continue
+                if (args[1] == 'posts-list'):
+                    LoggedUserMethods.show_logged_user_posts_list()
+                    continue
+                print(Msgs.INVALID_ARGS)
+                continue
+
+        if (args[0] == 'selected-user'):
+            continue
+
+        if (args[0] == 'selected-post'):
+            continue
+
+        print(Msgs.INVALID_ARGS)
+        continue
 
 
     if (cmd == 'auth') or (cmd=='login'):
@@ -95,39 +126,3 @@ while True:
     print(Msgs.UNKNOWN_CMD)
 
 del driver
-
-
-
-
-
-
-"""
-    elif cmd == 'get':
-        if (len(args) > 0):
-                print(Msgs.INVALID_ARGS)
-                return 
-"""
-
-"""
-args = [x.lower() for x in args]
-        if (len(args) < 1) or (len(args) > 3):
-                print(Msgs.INVALID_ARGS)
-        elif args[0] == 'logged-user':
-            args.pop(0)
-            if (len(args) > 1):
-                print(Msgs.INVALID_ARGS)
-                continue
-            if len(args) == 0:
-                LoggedUserMethods.get_logged_user()
-            elif len(args) == 1:
-                if args[0] == 'basic-data':
-                    LoggedUserMethods.get_logged_user_data()
-                else:
-                    print(Msgs.INVALID_ARGS)
-            else:
-                print(Msgs.INVALID_ARGS)
-        elif args[0] == 'selected-user':
-            pass
-        else:
-            print(Msgs.INVALID_ARGS)
-"""

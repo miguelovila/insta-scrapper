@@ -35,8 +35,11 @@ def del_logged_user_data():
     LoggedUserData.profile_pic_url = ''
     LoggedUserData.username = ''
     LoggedUserData.uploads = ''
+    LoggedUserData.followers_search = False
     LoggedUserData.followers_list.clear()
+    LoggedUserData.following_search = False
     LoggedUserData.following_list.clear()
+    LoggedUserData.posts_search = False
     LoggedUserData.posts_list.clear()
 
 #Showing Data
@@ -51,6 +54,9 @@ def show_logged_user():
 def show_logged_user_basic_data():
     if LoggedUserData.id == '':
         print(Msgs.LOGIN_REQUIRED)
+        return
+    if LoggedUserData.is_private == '':
+        print(Msgs.NO_DATA_TO_SHOW)
         return
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',LoggedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT) 
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('E-Mail: ',LoggedUserData.business_email) + Msgs.DEFAULT)
@@ -68,6 +74,12 @@ def show_logged_user_basic_data():
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Posts: ',LoggedUserData.uploads) + Msgs.DEFAULT)
 
 def show_logged_user_following_list():
+    if LoggedUserData.id == '':
+        print(Msgs.LOGIN_REQUIRED)
+        return
+    if LoggedUserData.following_search == False:
+        print(Msgs.NO_DATA_TO_SHOW)
+        return
     first = True
     for followee in LoggedUserData.following_list:
         if not(first):
@@ -79,6 +91,12 @@ def show_logged_user_following_list():
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',followee[2]) + Msgs.DEFAULT)
 
 def show_logged_user_followers_list():
+    if LoggedUserData.id == '':
+        print(Msgs.LOGIN_REQUIRED)
+        return
+    if LoggedUserData.followers_search == False:
+        print(Msgs.NO_DATA_TO_SHOW)
+        return
     first = True
     for follower in LoggedUserData.followers_list:
         if not(first):
@@ -90,6 +108,12 @@ def show_logged_user_followers_list():
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',follower[2]) + Msgs.DEFAULT)
 
 def show_logged_user_posts_list():
+    if LoggedUserData.id == '':
+        print(Msgs.LOGIN_REQUIRED)
+        return
+    if LoggedUserData.posts_search == False:
+        print(Msgs.NO_DATA_TO_SHOW)
+        return
     first = True
     for post in LoggedUserData.posts_list:
         if not(first):

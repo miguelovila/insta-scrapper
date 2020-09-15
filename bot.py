@@ -68,6 +68,7 @@ class Driver:
         next_page = True
         limit_reached = False
         limit = int(limit)
+        LoggedUserData.followers_search = True
         LoggedUserData.followers_list.clear()
         count = 0
         try:
@@ -98,6 +99,7 @@ class Driver:
         next_page = True
         limit_reached = False
         limit = int(limit)
+        LoggedUserData.following_search = True
         LoggedUserData.following_list.clear()
         count = 0
         try:
@@ -128,6 +130,7 @@ class Driver:
         next_page = True
         limit_reached = False
         limit = int(limit)
+        LoggedUserData.posts_search = True
         LoggedUserData.posts_list.clear()
         count = 0
         try:
