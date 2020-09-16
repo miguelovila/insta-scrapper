@@ -163,8 +163,140 @@ class Driver:
             SelectedUserData.id = str(response['graphql']['user']['id'])
             SelectedUserData.full_name = str(response['graphql']['user']['full_name'])
             SelectedUserData.username = str(response['graphql']['user']['username'])
+            SelectedUserData.followed_by_viewer = str(response['graphql']['user']['followed_by_viewer'])
+            SelectedUserData.is_private = str(response['graphql']['user']['is_private'])
         except Exception as e:
             Msgs.print_error(e)
     
     def deselect_user(self):
         SelectedUserMethods.del_selected_user_data()
+
+    def get_selected_user_basic_data(self):
+        if (SelectedUserData.id == ''):
+            print(Msgs.SELECTED_USER_REQUIRED)
+            return
+        try:       
+            self.__driver.get('https://www.instagram.com/' + SelectedUserData.username + '/?__a=1')
+            SelectedUserMethods.set_selected_user_basic_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        except Exception as e:
+            Msgs.print_error(e)
+
+    def get_selected_user_followers(self, limit = '0'):
+        if (SelectedUserData.id == ''):
+            print(Msgs.SELECTED_USER_REQUIRED)
+            return
+        if (LoggedUserData.id == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        self.__driver.get('https://www.instagram.com/' + SelectedUserData.username + '/?__a=1')
+        response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        SelectedUserData.followed_by_viewer = str(response['graphql']['user']['followed_by_viewer'])
+        SelectedUserData.is_private = str(response['graphql']['user']['is_private'])
+        if (SelectedUserData.followed_by_viewer == 'False') and (SelectedUserData.is_private == 'True'):
+            print(Msgs.PRIVATE_ACCOUNT)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        SelectedUserData.followers_search = True
+        SelectedUserData.followers_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables={"id":"' + SelectedUserData.id + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['user']['edge_followed_by']['edges'])):
+                    follower = (response['data']['user']['edge_followed_by']['edges'][i]['node']['full_name'],response['data']['user']['edge_followed_by']['edges'][i]['node']['username'],response['data']['user']['edge_followed_by']['edges'][i]['node']['id'])
+                    SelectedUserData.followers_list.append(follower)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['user']['edge_followed_by']['page_info']['has_next_page']
+                end_cursor = str(response['data']['user']['edge_followed_by']['page_info']['end_cursor'])
+        except Exception as e:
+            Msgs.print_error(e)
+
+    def get_selected_user_following(self, limit = '0'):
+        if (SelectedUserData.id == ''):
+            print(Msgs.SELECTED_USER_REQUIRED)
+            return
+        if (LoggedUserData.id == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        self.__driver.get('https://www.instagram.com/' + SelectedUserData.username + '/?__a=1')
+        response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        SelectedUserData.followed_by_viewer = str(response['graphql']['user']['followed_by_viewer'])
+        SelectedUserData.is_private = str(response['graphql']['user']['is_private'])
+        if (SelectedUserData.followed_by_viewer == 'False') and (SelectedUserData.is_private == 'True'):
+            print(Msgs.PRIVATE_ACCOUNT)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        SelectedUserData.following_search = True
+        SelectedUserData.following_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=d04b0a864b4b54837c0d870b0e77e076&variables={"id":"' + SelectedUserData.id + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['user']['edge_follow']['edges'])):
+                    followee = (response['data']['user']['edge_follow']['edges'][i]['node']['full_name'],response['data']['user']['edge_follow']['edges'][i]['node']['username'],response['data']['user']['edge_follow']['edges'][i]['node']['id'])
+                    SelectedUserData.following_list.append(followee)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['user']['edge_follow']['page_info']['has_next_page']
+                end_cursor = str(response['data']['user']['edge_follow']['page_info']['end_cursor'])
+        except Exception as e:
+            Msgs.print_error(e)
+
+    def get_selected_user_posts(self, limit = '0'):
+        if (SelectedUserData.id == ''):
+            print(Msgs.SELECTED_USER_REQUIRED)
+            return
+        self.__driver.get('https://www.instagram.com/' + SelectedUserData.username + '/?__a=1')
+        response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        SelectedUserData.followed_by_viewer = str(response['graphql']['user']['followed_by_viewer'])
+        SelectedUserData.is_private = str(response['graphql']['user']['is_private'])
+        if (SelectedUserData.followed_by_viewer == 'False') and (SelectedUserData.is_private == 'True'):
+            print(Msgs.PRIVATE_ACCOUNT)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        SelectedUserData.posts_search = True
+        SelectedUserData.posts_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=bfa387b2992c3a52dcbe447467b4b771&variables={"id":"' + SelectedUserData.id + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['user']['edge_owner_to_timeline_media']['edges'])):
+                    post = (response['data']['user']['edge_owner_to_timeline_media']['edges'][i]['node']['__typename'],response['data']['user']['edge_owner_to_timeline_media']['edges'][i]['node']['id'],response['data']['user']['edge_owner_to_timeline_media']['edges'][i]['node']['shortcode'])
+                    SelectedUserData.posts_list.append(post)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['user']['edge_owner_to_timeline_media']['page_info']['has_next_page']
+                end_cursor = str(response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor'])
+        except Exception as e:
+            Msgs.print_error(e)

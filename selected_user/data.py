@@ -18,3 +18,4 @@ following_search = False
 following_list = []
 posts_search = False
 posts_list = []
+followed_by_viewer = ''

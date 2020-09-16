@@ -1,4 +1,3 @@
-import os
 import urllib.request
 
 #Styles & Colours
@@ -17,7 +16,8 @@ INVALID_ARGS = RED + '[ERROR] Invalid arguments for given command. Type ' + BOLD
 INVALID_CARDENTIALS = RED + '[ERROR] Invalid cardentials. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 NO_DATA_TO_SHOW = RED + '[ERROR] All data is empty. First run "get" command or type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 SELECTED_USER_REQUIRED = RED + '[ERROR] The user must be selected. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
-USER_NOT_FOUND = RED + '[ERROR] The user does not exist. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
+USER_NOT_FOUND = RED + '[ERROR] The user does not exist.' + DEFAULT
+PRIVATE_ACCOUNT = RED + '[ERROR] The user has a private account and isn\'t followed by you.' + DEFAULT
 LOGIN_REQUIRED = RED + '[ERROR] The user must be authenticated. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 
 #Methods
@@ -36,7 +36,6 @@ def print_error(content):
     print(RED + '[ERROR] ' + str(content) + DEFAULT)
 
 def print_banner():
-    os.system('cls||clear')
     print(DEFAULT)
     print(r'      ____           __            _____                                        ')    
     print(r'     /  _/___  _____/ /_____ _    / ___/______________ _____  ____  ___  _____  ')

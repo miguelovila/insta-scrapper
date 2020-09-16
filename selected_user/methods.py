@@ -41,6 +41,7 @@ def del_selected_user_data():
     SelectedUserData.following_list.clear()
     SelectedUserData.posts_search = False
     SelectedUserData.posts_list.clear()
+    SelectedUserData.followed_by_viewer = ''
 
 #Showing Data
 def show_selected_user():
@@ -53,9 +54,9 @@ def show_selected_user():
 
 def show_selected_user_basic_data():
     if SelectedUserData.id == '':
-        print(Msgs.LOGIN_REQUIRED)
+        print(Msgs.SELECTED_USER_REQUIRED)
         return
-    if SelectedUserData.is_private == '':
+    if SelectedUserData.is_verified == '':
         print(Msgs.NO_DATA_TO_SHOW)
         return
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',SelectedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT) 
@@ -75,7 +76,7 @@ def show_selected_user_basic_data():
 
 def show_selected_user_following_list():
     if SelectedUserData.id == '':
-        print(Msgs.LOGIN_REQUIRED)
+        print(Msgs.SELECTED_USER_REQUIRED)
         return
     if SelectedUserData.following_search == False:
         print(Msgs.NO_DATA_TO_SHOW)
@@ -92,7 +93,7 @@ def show_selected_user_following_list():
 
 def show_selected_user_followers_list():
     if SelectedUserData.id == '':
-        print(Msgs.LOGIN_REQUIRED)
+        print(Msgs.SELECTED_USER_REQUIRED)
         return
     if SelectedUserData.followers_search == False:
         print(Msgs.NO_DATA_TO_SHOW)
@@ -109,7 +110,7 @@ def show_selected_user_followers_list():
 
 def show_selected_user_posts_list():
     if SelectedUserData.id == '':
-        print(Msgs.LOGIN_REQUIRED)
+        print(Msgs.SELECTED_USER_REQUIRED)
         return
     if SelectedUserData.posts_search == False:
         print(Msgs.NO_DATA_TO_SHOW)
