@@ -6,3 +6,6 @@ common/__pycache__/loggedin_user_data.cpython-38.pyc
 loggedin_user/__pycache__/methods.cpython-38.pyc
 loggedin_user/__pycache__/data.cpython-38.pyc
 loggedin_user/__pycache__/__init__.cpython-38.pyc
+selected_user/__pycache__/methods.cpython-38.pyc
+selected_user/__pycache__/data.cpython-38.pyc
+selected_user/__pycache__/__init__.cpython-38.pyc

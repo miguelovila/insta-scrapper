@@ -95,7 +95,6 @@ while True:
         print(Msgs.INVALID_ARGS)
         continue
 
-
     if (cmd == 'auth') or (cmd=='login'):
         if len(args) != 2:
             print(Msgs.INVALID_ARGS)
@@ -108,6 +107,40 @@ while True:
             print(Msgs.INVALID_ARGS)
             continue 
         driver.deauth()
+        continue
+
+    if (cmd == 'select') or (cmd=='sel'):
+        args = [x.lower() for x in args]
+
+        if len(args) != 2:
+            print(Msgs.INVALID_ARGS)
+            continue
+
+        if (args[0] == 'user'):
+            driver.select_user(args[1])
+            continue
+
+        if (args[0] == 'post'):
+            continue
+
+        print(Msgs.INVALID_ARGS)
+        continue
+
+    if (cmd == 'deselect') or (cmd=='desel'):
+        args = [x.lower() for x in args]
+
+        if len(args) != 1:
+            print(Msgs.INVALID_ARGS)
+            continue
+
+        if (args[0] == 'user'):
+            driver.deselect_user()
+            continue
+
+        if (args[0] == 'post'):
+            continue
+
+        print(Msgs.INVALID_ARGS)
         continue
 
     if (cmd == 'cls') or (cmd == 'clear'):

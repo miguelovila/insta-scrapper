@@ -16,6 +16,8 @@ UNKNOWN_ERROR = RED + '[ERROR] Unknown error. Type ' + BOLD + 'help' + REGULAR +
 INVALID_ARGS = RED + '[ERROR] Invalid arguments for given command. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 INVALID_CARDENTIALS = RED + '[ERROR] Invalid cardentials. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 NO_DATA_TO_SHOW = RED + '[ERROR] All data is empty. First run "get" command or type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
+SELECTED_USER_REQUIRED = RED + '[ERROR] The user must be selected. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
+USER_NOT_FOUND = RED + '[ERROR] The user does not exist. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 LOGIN_REQUIRED = RED + '[ERROR] The user must be authenticated. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 
 #Methods

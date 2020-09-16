@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions
 import common.terminal_messages as Msgs
 import loggedin_user.methods as LoggedUserMethods
 import loggedin_user.data as LoggedUserData
+import selected_user.methods as SelectedUserMethods
+import selected_user.data as SelectedUserData
 import json
 import re
 
@@ -149,3 +151,20 @@ class Driver:
                 end_cursor = str(response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor'])
         except Exception as e:
             Msgs.print_error(e)
+
+    def select_user(self, username):
+        try:
+            SelectedUserMethods.del_selected_user_data()   
+            self.__driver.get('https://www.instagram.com/' + username + '/?__a=1')
+            if not('"logging_page_id":"profilePage_' in self.__driver.page_source):
+                print(Msgs.USER_NOT_FOUND)
+                return
+            response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+            SelectedUserData.id = str(response['graphql']['user']['id'])
+            SelectedUserData.full_name = str(response['graphql']['user']['full_name'])
+            SelectedUserData.username = str(response['graphql']['user']['username'])
+        except Exception as e:
+            Msgs.print_error(e)
+    
+    def deselect_user(self):
+        SelectedUserMethods.del_selected_user_data()
