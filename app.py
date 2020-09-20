@@ -155,17 +155,17 @@ while True:
         continue
 
     if (cmd == 'select') or (cmd=='sel'):
-        args = [x.lower() for x in args]
 
         if len(args) != 2:
             print(Msgs.INVALID_ARGS)
             continue
 
-        if (args[0] == 'user'):
+        if (args[0].lower() == 'user'):
             driver.select_user(args[1])
             continue
 
-        if (args[0] == 'post'):
+        if (args[0].lower() == 'post'):
+            driver.select_post(args[1])
             continue
 
         print(Msgs.INVALID_ARGS)
@@ -183,6 +183,7 @@ while True:
             continue
 
         if (args[0] == 'post'):
+            driver.deselect_post()
             continue
 
         print(Msgs.INVALID_ARGS)

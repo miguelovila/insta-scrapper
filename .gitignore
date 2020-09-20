@@ -18,3 +18,6 @@ loggedin_user/__pycache__/__init__.cpython-37.pyc
 common/__pycache__/terminal_messages.cpython-37.pyc
 common/__pycache__/__init__.cpython-37.pyc
 __pycache__/bot.cpython-37.pyc
+selected_post/__pycache__/methods.cpython-38.pyc
+selected_post/__pycache__/data.cpython-38.pyc
+selected_post/__pycache__/__init__.cpython-38.pyc

@@ -8,6 +8,8 @@ import loggedin_user.methods as LoggedUserMethods
 import loggedin_user.data as LoggedUserData
 import selected_user.methods as SelectedUserMethods
 import selected_user.data as SelectedUserData
+import selected_post.data as SelectedPostData
+import selected_post.methods as SelectedPostMethods
 import json
 import re
 
@@ -300,3 +302,23 @@ class Driver:
                 end_cursor = str(response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor'])
         except Exception as e:
             Msgs.print_error(e)
+
+    def select_post(self, shortcode):
+        try:
+            SelectedPostMethods.del_selected_post_data() 
+            self.__driver.get('https://www.instagram.com/p/' + shortcode + '/?__a=1')
+            if not('__typename":"' in self.__driver.page_source):
+                print(Msgs.POST_NOT_FOUND)
+                return
+            response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+            SelectedPostData.typename = str(response['graphql']['shortcode_media']['__typename'])
+            SelectedPostData.post_id = str(response['graphql']['shortcode_media']['id'])
+            SelectedPostData.shortcode = str(response['graphql']['shortcode_media']['shortcode'])
+            SelectedPostData.owner_full_name = str(response['graphql']['shortcode_media']['owner']['full_name'])
+            SelectedPostData.owner_username = str(response['graphql']['shortcode_media']['owner']['username'])
+            SelectedPostData.owner_account_id = str(response['graphql']['shortcode_media']['owner']['id'])
+        except Exception as e:
+            Msgs.print_error(e)
+
+    def deselect_post(self):
+        SelectedPostMethods.del_selected_post_data()

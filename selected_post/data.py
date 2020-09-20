@@ -1,4 +1,5 @@
 typename = ''
+post_id=''
 shortcode = ''
 tagged_users = ''
 caption = ''

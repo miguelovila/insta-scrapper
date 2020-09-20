@@ -17,6 +17,7 @@ INVALID_CARDENTIALS = RED + '[ERROR] Invalid cardentials. Type ' + BOLD + 'help'
 NO_DATA_TO_SHOW = RED + '[ERROR] All data is empty. First run "get" command or type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 SELECTED_USER_REQUIRED = RED + '[ERROR] The user must be selected. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 USER_NOT_FOUND = RED + '[ERROR] The user does not exist.' + DEFAULT
+POST_NOT_FOUND = RED + '[ERROR] The post does not exist or is private.' + DEFAULT
 PRIVATE_ACCOUNT = RED + '[ERROR] The user has a private account and isn\'t followed by you.' + DEFAULT
 LOGIN_REQUIRED = RED + '[ERROR] The user must be authenticated. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 
