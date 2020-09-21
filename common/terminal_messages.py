@@ -16,6 +16,7 @@ INVALID_ARGS = RED + '[ERROR] Invalid arguments for given command. Type ' + BOLD
 INVALID_CARDENTIALS = RED + '[ERROR] Invalid cardentials. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 NO_DATA_TO_SHOW = RED + '[ERROR] All data is empty. First run "get" command or type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT 
 SELECTED_USER_REQUIRED = RED + '[ERROR] The user must be selected. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
+SELECTED_POST_REQUIRED = RED + '[ERROR] The post must be selected. Type ' + BOLD + 'help' + REGULAR + '.' + DEFAULT
 USER_NOT_FOUND = RED + '[ERROR] The user does not exist.' + DEFAULT
 POST_NOT_FOUND = RED + '[ERROR] The post does not exist or is private.' + DEFAULT
 PRIVATE_ACCOUNT = RED + '[ERROR] The user has a private account and isn\'t followed by you.' + DEFAULT
@@ -29,6 +30,9 @@ def shrink_url(url):
         return tinyurl.decode("utf-8")
     except:
         return 'None'
+
+def remove_last_line_from_string(s):
+    return s[:s.rfind('\n')]
 
 def print_info(content):
     print(YELLOW + '[INFO] ' + str(content) + DEFAULT)

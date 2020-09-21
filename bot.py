@@ -322,3 +322,13 @@ class Driver:
 
     def deselect_post(self):
         SelectedPostMethods.del_selected_post_data()
+
+    def get_selected_post_basic_data(self):
+        if (SelectedPostData.post_id == ''):
+            print(Msgs.SELECTED_POST_REQUIRED)
+            return
+        try:       
+            self.__driver.get('https://www.instagram.com/p/' + SelectedPostData.shortcode + '/?__a=1')
+            SelectedPostMethods.set_selected_post_basic_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+        except Exception as e:
+            Msgs.print_error(e)

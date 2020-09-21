@@ -2,6 +2,7 @@ import readline
 import common.terminal_messages as Msgs
 import loggedin_user.methods as LoggedUserMethods
 import selected_user.methods as SelectedUserMethods
+import selected_post.methods as SelectedPostMethods
 from bot import Driver
 import os
 
@@ -82,7 +83,19 @@ while True:
                 continue
 
         if (args[0] == 'selected-post'):
-            continue
+            if (len(args) == 2):
+                if (args[1] == 'basic-data'):
+                    driver.get_selected_post_basic_data()
+                    continue
+                if (args[1] == 'likers-list'):
+                    continue
+                print(Msgs.INVALID_ARGS)
+                continue
+            if (len(args) == 3):
+                if (args[1] == 'likers-list'):
+                    continue
+                print(Msgs.INVALID_ARGS)
+                continue
 
         print(Msgs.INVALID_ARGS)
         continue
@@ -135,7 +148,17 @@ while True:
                 continue
 
         if (args[0] == 'selected-post'):
-            continue
+            if (len(args) == 1):
+                SelectedPostMethods.show_selected_post()
+                continue
+            if (len(args) == 2):
+                if (args[1] == 'basic-data'):
+                    SelectedPostMethods.show_selected_post_basic_data()
+                    continue
+                if (args[1] == 'likers-list'):
+                    continue
+                print(Msgs.INVALID_ARGS)
+                continue
 
         print(Msgs.INVALID_ARGS)
         continue
