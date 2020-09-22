@@ -52,3 +52,20 @@ def show_selected_post_basic_data():
     print(Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Owner Name: ', SelectedPostData.owner_full_name) + Msgs.DEFAULT)
     print(Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Owner Username: ',SelectedPostData.owner_username) + Msgs.DEFAULT)
     print(Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Owner ID: ',SelectedPostData.owner_account_id) + Msgs.DEFAULT)
+
+def show_selected_post_likers_list():
+    if SelectedPostData.post_id == '':
+        print(Msgs.SELECTED_POST_REQUIRED)
+        return
+    if SelectedPostData.likers_search == False:
+        print(Msgs.NO_DATA_TO_SHOW)
+        return
+    first = True
+    for liker in SelectedPostData.likers_list:
+        if not(first):
+            print (Msgs.YELLOW + "[INFO]" + Msgs.DEFAULT)
+        else:
+            first = False
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Full Name: ',liker[0]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Username: ',liker[1]) + Msgs.DEFAULT)
+        print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Account ID: ',liker[2]) + Msgs.DEFAULT)

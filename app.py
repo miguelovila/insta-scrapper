@@ -88,11 +88,13 @@ while True:
                     driver.get_selected_post_basic_data()
                     continue
                 if (args[1] == 'likers-list'):
+                    driver.get_selected_post_likes()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
                 if (args[1] == 'likers-list'):
+                    driver.get_selected_post_likes(args[2])
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
@@ -156,6 +158,7 @@ while True:
                     SelectedPostMethods.show_selected_post_basic_data()
                     continue
                 if (args[1] == 'likers-list'):
+                    SelectedPostMethods.show_selected_post_likers_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue

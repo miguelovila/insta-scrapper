@@ -7,3 +7,5 @@ likes = ''
 owner_full_name = ''
 owner_username = ''
 owner_account_id = ''
+likers_search = False
+likers_list = []

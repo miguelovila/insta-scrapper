@@ -332,3 +332,37 @@ class Driver:
             SelectedPostMethods.set_selected_post_basic_data(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
         except Exception as e:
             Msgs.print_error(e)
+
+    def get_selected_post_likes(self, limit = '0'):
+        if (LoggedUserData.id == ''):
+            print(Msgs.LOGIN_REQUIRED)
+            return
+        if (SelectedPostData.post_id == ''):
+            print(Msgs.SELECTED_POST_REQUIRED)
+            return
+        if not(limit.isnumeric()):
+            print(Msgs.INVALID_ARGS)
+            return
+        end_cursor = ''
+        next_page = True
+        limit_reached = False
+        limit = int(limit)
+        SelectedPostData.likers_search = True
+        SelectedPostData.likers_list.clear()
+        count = 0
+        try:
+            while next_page and not(limit_reached):
+                self.__driver.get('https://www.instagram.com/graphql/query/?query_hash=d5d763b1e2acf209d62d22d184488e57&variables={"shortcode":"' + SelectedPostData.shortcode + '","first":50,"after":"' + end_cursor + '"}')
+                response = json.loads(WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.TAG_NAME, 'pre'))).text)
+                for i in range(len(response['data']['shortcode_media']['edge_liked_by']['edges'])):
+                    liker = (response['data']['shortcode_media']['edge_liked_by']['edges'][i]['node']['full_name'],response['data']['shortcode_media']['edge_liked_by']['edges'][i]['node']['username'],response['data']['shortcode_media']['edge_liked_by']['edges'][i]['node']['id'])
+                    SelectedPostData.likers_list.append(liker)
+                    count += 1
+                    if (limit != '0'):
+                        if (count == limit):
+                            limit_reached = True
+                            break            
+                next_page = response['data']['shortcode_media']['edge_liked_by']['page_info']['has_next_page']
+                end_cursor = str(response['data']['shortcode_media']['edge_liked_by']['page_info']['end_cursor'])
+        except Exception as e:
+            Msgs.print_error(e)
