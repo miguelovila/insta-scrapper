@@ -28,27 +28,34 @@ while True:
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
                     driver.get_logged_user_basic_data()
+                    LoggedUserMethods.show_logged_user_basic_data()
                     continue
                 if (args[1] == 'following-list'):
                     driver.get_logged_user_following()
+                    LoggedUserMethods.show_logged_user_following_list()
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_logged_user_followers()
+                    LoggedUserMethods.show_logged_user_followers_list()
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_logged_user_posts()
+                    LoggedUserMethods.show_logged_user_posts_list
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
                 if (args[1] == 'following-list'):
                     driver.get_logged_user_following(args[2])
+                    LoggedUserMethods.show_logged_user_following_list()
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_logged_user_followers(args[2])
+                    LoggedUserMethods.show_logged_user_followers_list()
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_logged_user_posts(args[2])
+                    LoggedUserMethods.show_logged_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
@@ -57,27 +64,34 @@ while True:
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
                     driver.get_selected_user_basic_data()
+                    SelectedUserMethods.show_selected_user_basic_data()
                     continue
                 if (args[1] == 'following-list'):
                     driver.get_selected_user_following()
+                    SelectedUserMethods.show_selected_user_following_list
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_selected_user_followers()
+                    SelectedUserMethods.show_selected_user_followers_list
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_selected_user_posts()
+                    SelectedUserMethods.show_selected_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
                 if (args[1] == 'following-list'):
                     driver.get_selected_user_following(args[2])
+                    SelectedUserMethods.show_selected_user_following_list()
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_selected_user_followers(args[2])
+                    SelectedUserMethods.show_selected_user_followers_list
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_selected_user_posts(args[2])
+                    SelectedUserMethods.show_selected_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
@@ -86,15 +100,18 @@ while True:
             if (len(args) == 2):
                 if (args[1] == 'basic-data'):
                     driver.get_selected_post_basic_data()
+                    SelectedPostMethods.show_selected_post_basic_data()
                     continue
                 if (args[1] == 'likers-list'):
                     driver.get_selected_post_likes()
+                    SelectedPostMethods.show_selected_post_likers_list
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
                 if (args[1] == 'likers-list'):
                     driver.get_selected_post_likes(args[2])
+                    SelectedPostMethods.show_selected_post_likers_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
