@@ -40,7 +40,7 @@ while True:
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_logged_user_posts()
-                    LoggedUserMethods.show_logged_user_posts_list
+                    LoggedUserMethods.show_logged_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
@@ -68,11 +68,11 @@ while True:
                     continue
                 if (args[1] == 'following-list'):
                     driver.get_selected_user_following()
-                    SelectedUserMethods.show_selected_user_following_list
+                    SelectedUserMethods.show_selected_user_following_list()
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_selected_user_followers()
-                    SelectedUserMethods.show_selected_user_followers_list
+                    SelectedUserMethods.show_selected_user_followers_list()
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_selected_user_posts()
@@ -87,7 +87,7 @@ while True:
                     continue
                 if (args[1] == 'followers-list'):
                     driver.get_selected_user_followers(args[2])
-                    SelectedUserMethods.show_selected_user_followers_list
+                    SelectedUserMethods.show_selected_user_followers_list()
                     continue
                 if (args[1] == 'posts-list'):
                     driver.get_selected_user_posts(args[2])
@@ -104,7 +104,7 @@ while True:
                     continue
                 if (args[1] == 'likers-list'):
                     driver.get_selected_post_likes()
-                    SelectedPostMethods.show_selected_post_likers_list
+                    SelectedPostMethods.show_selected_post_likers_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
