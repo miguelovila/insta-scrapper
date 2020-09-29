@@ -183,6 +183,12 @@ while True:
         print(Msgs.INVALID_ARGS)
         continue
 
+    if (cmd == 'export'):
+        if len(args) != 2:
+            print(Msgs.INVALID_ARGS)
+            continue
+        #TO-DO: export user data. Selected between targets. TO-DO WIP
+
     if (cmd == 'auth') or (cmd=='login'):
         if len(args) != 2:
             print(Msgs.INVALID_ARGS)
