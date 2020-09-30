@@ -26,34 +26,34 @@ while True:
         
         if (args[0] == 'logged-user'):
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     driver.get_logged_user_basic_data()
                     LoggedUserMethods.show_logged_user_basic_data()
                     continue
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     driver.get_logged_user_following()
                     LoggedUserMethods.show_logged_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     driver.get_logged_user_followers()
                     LoggedUserMethods.show_logged_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     driver.get_logged_user_posts()
                     LoggedUserMethods.show_logged_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     driver.get_logged_user_following(args[2])
                     LoggedUserMethods.show_logged_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     driver.get_logged_user_followers(args[2])
                     LoggedUserMethods.show_logged_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     driver.get_logged_user_posts(args[2])
                     LoggedUserMethods.show_logged_user_posts_list()
                     continue
@@ -62,34 +62,34 @@ while True:
 
         if (args[0] == 'selected-user'):
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     driver.get_selected_user_basic_data()
                     SelectedUserMethods.show_selected_user_basic_data()
                     continue
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     driver.get_selected_user_following()
                     SelectedUserMethods.show_selected_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     driver.get_selected_user_followers()
                     SelectedUserMethods.show_selected_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     driver.get_selected_user_posts()
                     SelectedUserMethods.show_selected_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     driver.get_selected_user_following(args[2])
                     SelectedUserMethods.show_selected_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     driver.get_selected_user_followers(args[2])
                     SelectedUserMethods.show_selected_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     driver.get_selected_user_posts(args[2])
                     SelectedUserMethods.show_selected_user_posts_list()
                     continue
