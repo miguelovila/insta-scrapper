@@ -98,18 +98,18 @@ while True:
 
         if (args[0] == 'selected-post'):
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     driver.get_selected_post_basic_data()
                     SelectedPostMethods.show_selected_post_basic_data()
                     continue
-                if (args[1] == 'likers-list'):
+                if (args[1] == 'likers-list') or (args[1] == 'likers'):
                     driver.get_selected_post_likes()
                     SelectedPostMethods.show_selected_post_likers_list()
                     continue
                 print(Msgs.INVALID_ARGS)
                 continue
             if (len(args) == 3):
-                if (args[1] == 'likers-list'):
+                if (args[1] == 'likers-list') or (args[1] == 'likers'):
                     driver.get_selected_post_likes(args[2])
                     SelectedPostMethods.show_selected_post_likers_list()
                     continue
@@ -131,16 +131,16 @@ while True:
                 LoggedUserMethods.show_logged_user()
                 continue
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     LoggedUserMethods.show_logged_user_basic_data()
                     continue
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     LoggedUserMethods.show_logged_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     LoggedUserMethods.show_logged_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     LoggedUserMethods.show_logged_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
@@ -151,16 +151,16 @@ while True:
                 SelectedUserMethods.show_selected_user()
                 continue
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     SelectedUserMethods.show_selected_user_basic_data()
                     continue
-                if (args[1] == 'following-list'):
+                if (args[1] == 'following-list') or (args[1] == 'following'):
                     SelectedUserMethods.show_selected_user_following_list()
                     continue
-                if (args[1] == 'followers-list'):
+                if (args[1] == 'followers-list') or (args[1] == 'followers'):
                     SelectedUserMethods.show_selected_user_followers_list()
                     continue
-                if (args[1] == 'posts-list'):
+                if (args[1] == 'posts-list') or (args[1] == 'posts'):
                     SelectedUserMethods.show_selected_user_posts_list()
                     continue
                 print(Msgs.INVALID_ARGS)
@@ -171,10 +171,10 @@ while True:
                 SelectedPostMethods.show_selected_post()
                 continue
             if (len(args) == 2):
-                if (args[1] == 'basic-data'):
+                if (args[1] == 'basic-data') or (args[1] == 'basic-info') or (args[1] == 'data') or (args[1] == 'info'):
                     SelectedPostMethods.show_selected_post_basic_data()
                     continue
-                if (args[1] == 'likers-list'):
+                if (args[1] == 'likers-list') or (args[1] == 'likers'):
                     SelectedPostMethods.show_selected_post_likers_list()
                     continue
                 print(Msgs.INVALID_ARGS)
