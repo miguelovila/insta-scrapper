@@ -15,6 +15,8 @@ import re
 
 class Driver:
 
+#region "DRIVER HANDLER"
+
     def __init__(self, headless):
             __options = Options()
             __options.headless = headless
@@ -23,6 +25,10 @@ class Driver:
 
     def __del__(self):
         self.__driver.quit()
+
+#endregion
+
+#region "LOGGED USER"
 
     def auth(self, args=[]):
         try:
@@ -153,6 +159,10 @@ class Driver:
                 end_cursor = str(response['data']['user']['edge_owner_to_timeline_media']['page_info']['end_cursor'])
         except Exception as e:
             Msgs.print_error(e)
+
+#endregion
+
+#region "SELECTED USER"
 
     def select_user(self, username):
         try:
@@ -303,6 +313,10 @@ class Driver:
         except Exception as e:
             Msgs.print_error(e)
 
+#endregion
+
+#region "SELECTED POST"
+
     def select_post(self, shortcode):
         try:
             SelectedPostMethods.del_selected_post_data() 
@@ -366,3 +380,5 @@ class Driver:
                 end_cursor = str(response['data']['shortcode_media']['edge_liked_by']['page_info']['end_cursor'])
         except Exception as e:
             Msgs.print_error(e)
+
+#endregion

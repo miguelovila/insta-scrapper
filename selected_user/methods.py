@@ -124,4 +124,3 @@ def show_selected_user_posts_list():
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Type Name: ',post[0]) + Msgs.DEFAULT)
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Post ID: ',post[1]) + Msgs.DEFAULT)
         print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Short Code: ',post[2]) + Msgs.DEFAULT)
-#Exporting Data
