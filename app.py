@@ -1,4 +1,4 @@
-import readline
+import pyreadline as readline
 import common.terminal_messages as Msgs
 import loggedin_user.methods as LoggedUserMethods
 import selected_user.methods as SelectedUserMethods
