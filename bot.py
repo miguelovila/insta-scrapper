@@ -34,6 +34,7 @@ class Driver:
     def auth(self, args=[]):
         try:
             self.deauth()
+            WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.CSS_SELECTOR, 'button.aOOlW:nth-child(1)'))).click()
             WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'username'))).send_keys(args[0])
             WebDriverWait(self.__driver, 5).until(expected_conditions.presence_of_element_located((By.NAME, 'password'))).send_keys(args[1])       
             try:
