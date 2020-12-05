@@ -1,5 +1,4 @@
 biography = ''
-business_email = ''
 external_url = ''
 followers = ''
 following = ''

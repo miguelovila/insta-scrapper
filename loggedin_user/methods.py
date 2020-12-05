@@ -7,7 +7,6 @@ import json
 def set_logged_user_basic_data(response):
     response = json.loads(response)
     LoggedUserData.biography = str(response['graphql']['user']['biography'])
-    LoggedUserData.business_email = str(response['graphql']['user']['business_email'])
     LoggedUserData.external_url = str(response['graphql']['user']['external_url'])
     LoggedUserData.followers = str(response['graphql']['user']['edge_followed_by']['count'])
     LoggedUserData.following = str(response['graphql']['user']['edge_follow']['count'])
@@ -23,7 +22,6 @@ def set_logged_user_basic_data(response):
 
 def del_logged_user_data():
     LoggedUserData.biography = ''
-    LoggedUserData.business_email = ''
     LoggedUserData.external_url = ''
     LoggedUserData.followers = ''
     LoggedUserData.following = ''
@@ -59,8 +57,7 @@ def show_logged_user_basic_data():
     if LoggedUserData.is_private == '':
         print(Msgs.NO_DATA_TO_SHOW)
         return
-    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',LoggedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT) 
-    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('E-Mail: ',LoggedUserData.business_email) + Msgs.DEFAULT)
+    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',LoggedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Website: ',LoggedUserData.external_url) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Followers: ',LoggedUserData.followers) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Following: ',LoggedUserData.following) + Msgs.DEFAULT)

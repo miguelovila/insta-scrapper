@@ -6,7 +6,6 @@ import json
 def set_selected_user_basic_data(response):
     response = json.loads(response)
     SelectedUserData.biography = str(response['graphql']['user']['biography'])
-    SelectedUserData.business_email = str(response['graphql']['user']['business_email'])
     SelectedUserData.external_url = str(response['graphql']['user']['external_url'])
     SelectedUserData.followers = str(response['graphql']['user']['edge_followed_by']['count'])
     SelectedUserData.following = str(response['graphql']['user']['edge_follow']['count'])
@@ -22,7 +21,6 @@ def set_selected_user_basic_data(response):
 
 def del_selected_user_data():
     SelectedUserData.biography = ''
-    SelectedUserData.business_email = ''
     SelectedUserData.external_url = ''
     SelectedUserData.followers = ''
     SelectedUserData.following = ''
@@ -59,8 +57,7 @@ def show_selected_user_basic_data():
     if SelectedUserData.is_verified == '':
         print(Msgs.NO_DATA_TO_SHOW)
         return
-    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',SelectedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT) 
-    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('E-Mail: ',SelectedUserData.business_email) + Msgs.DEFAULT)
+    print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Biography: ',SelectedUserData.biography.replace('\n',f'\n{"[INFO]":<26}')) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Website: ',SelectedUserData.external_url) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Followers: ',SelectedUserData.followers) + Msgs.DEFAULT)
     print (Msgs.YELLOW + "[INFO] {:>18} {:<18}".format('Following: ',SelectedUserData.following) + Msgs.DEFAULT)
